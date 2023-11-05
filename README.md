@@ -30,22 +30,26 @@ For a presentation of the homogenization framework, the computation of the sensi
 
 ## Settings
 
-* Definition: **Ch**= Cauchy homogenized tensor; **Dh** strain-gradient homogenized tensor
+* Definition: **Ch**= Cauchy homogenized tensor and **Dh**= strain-gradient homogenized tensor
 
 * The file to configure to launch the optimization calculation is initialisation/initfile.m
   - Default: initial cell is a 1x1 square, and the initial distribution of stiff and soft is given by a centered disk **psi0**
   - Size of the rectangular cell can be chosen (**a**, **b**) 
   - Initial size of the mesh is given by **ni**
-  - Young modulus (**E0**), material contrast (**gamma**), poisson ratio (**0.3**)
-  - The shape functioni (criterion) to be optimized: **s**
-      s =  string expression of the functional, is written with the coefficients
+  - Young modulus (**E0**), material contrast (**gamma**), poisson ratio (**nu**)
+  - The shape functioni (criterion) to be optimized:
+      **s**= string expression of the functional, is written with the components
       of the selected tensors Chij, Dhij. 
-      These coefficients have to be surrounded with empty spaces.
-      Also, tensors need to be written Thij with i <= j 
-      it is not restrictive because all tensors are symetric
-      ex : 
-            s = ' Dh22 / Ch11  ';
+      These components have to be surrounded with empty spaces. 
+      Also, tensors need to be written Chij or Dhij with i <= j. 
+      This is not restrictive because all tensors are symetric.
+      _Example: **s** = ' Dh22 / Ch11  '_
+  - The compliance tensor **Sh** can also be used
 
+* To start the optimization procedure, run **mscale.m**. After the optimization procedure has stopped, it is possible to: 
+  - Refine the mesh 
+  - Change the shape function **cost**, the contrast **matprop.gamma** 
+  - Save the results
 
 ## Authors
 
